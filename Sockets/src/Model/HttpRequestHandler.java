@@ -15,6 +15,10 @@ import Model.httpHelper.HttpRequestResponse;
 import Model.httpMethods.HttpPost;
 
 public class HttpRequestHandler extends Thread{
+
+	private static final String POST = "post";
+	private static final String GET = "get";
+	private static final String HEAD = "head"; 
 	
 	private Socket clientSocket;
 	/*	
@@ -37,13 +41,22 @@ public class HttpRequestHandler extends Thread{
 		try {
             InputStream input  = clientSocket.getInputStream();
             OutputStream output = clientSocket.getOutputStream();
-			
-//			Scanner input  = new Scanner(clientSocket.getInputStream());
-//			PrintWriter output = new PrintWriter(clientSocket.getOutputStream());
             
 			String request = readRequestToTheEnd(input);
 			
-			String response = new HttpPost().getResponse(new HttpRequestResponse());
+			String response = "";
+			
+			if(request.toUpperCase().startsWith("POST")){
+				HttpPost post = new HttpPost();
+				response = post.getResponse(post.translateInput(request));
+			}
+			else if(request.toUpperCase().startsWith("GET")){
+				//TODO pegar resposta do GET
+			}
+			else if(request.toUpperCase().startsWith("HEAD")){
+				//TODO pegar resposta do HEAD
+			}
+			
 						
 			output.write(response.getBytes());
 			output.flush();
@@ -74,24 +87,6 @@ public class HttpRequestHandler extends Thread{
 		}
 		
 		return builder.toString();
-		/*
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		StringBuilder builder = new StringBuilder();
-		
-		try {
-			
-			byte[] buffer = new byte[1024]; //you can configure the buffer size
-			while (input.read(buffer) != -1){//
-				builder.append(buffer.toString());
-			}
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return builder.toString();
-		*/
 	}
 	
 	

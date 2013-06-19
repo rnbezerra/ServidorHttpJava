@@ -10,6 +10,10 @@ public class HttpRequestResponse {
 	private HttpHeader headers;
 	private byte[] body;
 	
+	public HttpRequestResponse() {
+		this.headers = new HttpHeader();
+	}
+	
 	public HttpHeader getHeaders() {
 		return headers;
 	}

@@ -1,5 +1,8 @@
 package Model.httpMethods;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import Model.HttpMethodsInterface;
 import Model.httpHelper.HttpHelper;
 import Model.httpHelper.HttpRequestResponse;
@@ -9,6 +12,7 @@ public class HttpPost implements HttpMethodsInterface{
 	@Override
 	public String getResponse(HttpRequestResponse request) {
 	
+		System.out.println(request.getHeaders().getAllHeadersAsString());
 		long time = System.currentTimeMillis();
         
 		StringBuilder builder = new StringBuilder();
@@ -21,8 +25,22 @@ public class HttpPost implements HttpMethodsInterface{
 	
 	@Override
 	public HttpRequestResponse translateInput(String input) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		HttpRequestResponse request = new HttpRequestResponse();
+		ArrayList<String> linhas = new ArrayList<String>(Arrays.asList(input.split("\n")));
+//		for (String l : input.split("\n")) {
+//			linhas.add(l);
+//		}
+//		
+		linhas.remove(0);
+				
+		for (String l : linhas) {
+			if(l.indexOf(":") != -1){
+				request.getHeaders().addHeader(l.replace(" ","").split(":")[0], l.replace(" ","").split(":")[1]);
+			}
+		}
+				
+		return request;
 	}
 	
 }

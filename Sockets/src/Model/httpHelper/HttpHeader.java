@@ -6,6 +6,10 @@ public class HttpHeader {
 
 	private HashMap<String, String> headers;
 
+	public HttpHeader() {
+		headers = new HashMap<String, String>();
+	}
+	
 //	public HashMap<String, String> getHeaders() {
 //		return headers;
 //	}
