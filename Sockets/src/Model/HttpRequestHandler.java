@@ -11,26 +11,12 @@ import java.io.StringWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-import Model.httpHelper.HttpRequestResponse;
 import Model.httpMethods.HttpPost;
 
 public class HttpRequestHandler extends Thread{
 
-	private static final String POST = "post";
-	private static final String GET = "get";
-	private static final String HEAD = "head"; 
-	
 	private Socket clientSocket;
-	/*	
-	public Socket getClientSocket() {
-		return clientSocket;
-	}
 
-	public void setClientSocket(Socket clientSocket) {
-		this.clientSocket = clientSocket;
-	}
-
-	*/
 	public HttpRequestHandler(Socket clientSocket) {
 		this.clientSocket = clientSocket;
 	}
@@ -48,7 +34,7 @@ public class HttpRequestHandler extends Thread{
 			
 			if(request.toUpperCase().startsWith("POST")){
 				HttpPost post = new HttpPost();
-				response = post.getResponse(post.translateInput(request));
+				response = post.getResponse(request);
 			}
 			else if(request.toUpperCase().startsWith("GET")){
 				//TODO pegar resposta do GET
@@ -63,7 +49,7 @@ public class HttpRequestHandler extends Thread{
 			
             output.close();
             input.close();
-            System.out.println("Request processed: " + response + "\n" + request);
+            System.out.println(request);
         } catch (IOException e) {
             //report exception somewhere.
             e.printStackTrace();
