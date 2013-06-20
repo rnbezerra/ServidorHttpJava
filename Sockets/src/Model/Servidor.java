@@ -4,35 +4,32 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Servidor extends Thread {
+public class Servidor {
 	
-	private boolean serverStopped;
-	private ServerSocket serverSocket;
+	private static boolean serverStopped;
+	private static ServerSocket serverSocket;
 	
-	public boolean isServerStopped() {
+	public static boolean isServerStopped() {
 		return serverStopped;
 	}
 
-	public void stopServer() {
+	public static void stopServer() {
 		serverStopped = true;
 	}
 
-	public ServerSocket getServerSocket() {
+	public static ServerSocket getServerSocket() {
 		return serverSocket;
 	}
 
-	public void setServerSocket(ServerSocket serverSocket) {
-		this.serverSocket = serverSocket;
+	public static void setServerSocket(ServerSocket serverSocket) {
+		Servidor.serverSocket = serverSocket;
 	}
 
 
-	//RUN================================================================
-	@Override
-	public void run() {
-		super.run();
-		
+	public static void main(String[] args) {
+	
 		try {
-			this.serverSocket = new ServerSocket(80);
+			serverSocket = new ServerSocket(80);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -41,7 +38,7 @@ public class Servidor extends Thread {
 		while(! isServerStopped()){
 	        Socket clientSocket = null;
 	        try {
-	            clientSocket = this.serverSocket.accept();
+	            clientSocket = serverSocket.accept();
 	        } catch (IOException e) {
 	            if(isServerStopped()) {
 	                System.out.println("Server Stopped.") ;
