@@ -99,10 +99,9 @@ public class Cliente extends Thread
 		}
 		
 				
-		String linha ;
 		while( entrada.hasNextLine() )
 		{
-			System.out.println( linha =  entrada.nextLine() );
+			System.out.println( entrada.nextLine() );
 		}
 		
 		entrada.close();
