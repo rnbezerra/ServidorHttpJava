@@ -78,7 +78,6 @@ public class Cliente extends Thread
 		saida.println	("Connection: close");
 		
 		saida.println		("\n\n");
-		saida.println		("fim");
 		saida.flush();
 		
 	}
