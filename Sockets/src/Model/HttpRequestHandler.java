@@ -40,7 +40,7 @@ public class HttpRequestHandler extends Thread{
 			}
 			else if(request.toUpperCase().startsWith("GET")){
 				HttpGet get = new HttpGet();
-				get.getResponse(request);
+				response = get.getResponse(request);
 			}
 			else if(request.toUpperCase().startsWith("HEAD")){
 				//TODO pegar resposta do HEAD
