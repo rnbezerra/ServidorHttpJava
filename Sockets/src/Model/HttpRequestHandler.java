@@ -11,6 +11,7 @@ import java.io.StringWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+import Model.httpMethods.HttpHead;
 import Model.httpMethods.HttpPost;
 
 public class HttpRequestHandler extends Thread{
@@ -41,6 +42,10 @@ public class HttpRequestHandler extends Thread{
 			}
 			else if(request.toUpperCase().startsWith("HEAD")){
 				//TODO pegar resposta do HEAD
+				HttpHead head = new HttpHead();
+				response = head.getResponse(request);
+				
+				
 			}
 			
 						
