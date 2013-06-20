@@ -73,7 +73,7 @@ public class Cliente extends Thread
 			e.printStackTrace();
 		}
 		
-		saida.println	("GET /teste HTTP/1.1");
+		saida.println	("POST /teste HTTP/1.1");
 		saida.println	("Host: "+ cliente.getLocalAddress() );
 		saida.println	("Connection: close");
 		
@@ -101,9 +101,9 @@ public class Cliente extends Thread
 		
 				
 		String linha ;
-		while( !( linha =  entrada.nextLine() ).equals("fim") )
+		while( entrada.hasNextLine() )
 		{
-			System.out.println( linha );
+			System.out.println( linha =  entrada.nextLine() );
 		}
 		
 		entrada.close();

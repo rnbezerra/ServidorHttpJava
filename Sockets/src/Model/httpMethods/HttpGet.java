@@ -18,9 +18,6 @@ public class HttpGet
 	   	   .append("Last-Modified: Mon, 22 Jun 1998\n")
 	   	   .append("Content-Length: " + request.length() + "\n")
 	   	   .append("Content-Type: text/html;charset=utf-8\n")
-	   	   .append("\n")
-	   	   .append("Requisição enviado pelo cliente ao servidor:\n")
-	   	   .append(request)
 	   	   .append("\n");
 		return builder.toString();
 	}
