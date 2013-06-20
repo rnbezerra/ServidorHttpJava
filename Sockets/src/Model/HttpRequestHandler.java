@@ -56,7 +56,7 @@ public class HttpRequestHandler extends Thread{
 			
             output.close();
             input.close();
-            System.out.println(request);
+            System.out.println(response);
         } catch (IOException e) {
             //report exception somewhere.
             e.printStackTrace();
