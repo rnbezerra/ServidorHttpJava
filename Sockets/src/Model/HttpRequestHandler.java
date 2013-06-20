@@ -11,6 +11,7 @@ import java.io.StringWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+import Model.httpMethods.HttpGet;
 import Model.httpMethods.HttpHead;
 import Model.httpMethods.HttpPost;
 
@@ -38,7 +39,8 @@ public class HttpRequestHandler extends Thread{
 				response = post.getResponse(request);
 			}
 			else if(request.toUpperCase().startsWith("GET")){
-				//TODO pegar resposta do GET
+				HttpGet get = new HttpGet();
+				get.getResponse(request);
 			}
 			else if(request.toUpperCase().startsWith("HEAD")){
 				//TODO pegar resposta do HEAD
