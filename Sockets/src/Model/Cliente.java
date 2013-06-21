@@ -76,7 +76,7 @@ public class Cliente extends Thread
 			e.printStackTrace();
 		}
 		
-		saida.println	("POST /teste HTTP/1.1");
+		saida.println	("GET /teste HTTP/1.1");
 		saida.println	("Host: "+ cliente.getLocalAddress() );
 		if(conexaoStatus == true)
 			saida.println	("Connection: Keep-Alive");
