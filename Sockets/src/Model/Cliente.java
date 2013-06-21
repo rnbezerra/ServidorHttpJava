@@ -92,7 +92,7 @@ public class Cliente extends Thread
 	{
 		
 		//		***************AGUARDA MENSAGEM DE RESPOSTA HTTP************************
-		
+		// so pra conseguir commitar
 		
 		Scanner entrada = null;
 		try
