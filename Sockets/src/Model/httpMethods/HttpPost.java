@@ -1,24 +1,31 @@
 package Model.httpMethods;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 public class HttpPost{
 
-	public String getResponse() {
+	public String getResponse(String request) {
 
 		//long time = System.currentTimeMillis();
-        
+		Calendar calendar = Calendar.getInstance();
+        String now = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z").format(calendar.getTime());
+        calendar.add(calendar.MONTH, -3);
+        String lastModified = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z").format(calendar.getTime());
 
+        String connection = (request.contains("Connection: Keep-Alive") ? "Keep-Alive" : "Close");
+        
 		StringBuilder builder = new StringBuilder();
 		
 		String mensagem = "Resposta do servidor: dados, dados, dados...";
 
 		builder.append("HTTP/1.1 200").append("\n")
-	   	   .append("Connection: Keep-Alive\n")
-//	   	   .append("Date: Thu, 06 Aug 1998 12:00:15 GMT\n")
+	   	   .append("Connection: ").append(connection).append("\n")
+	   	   .append("Date: ").append(now).append("\n")
+	   	   .append("Last-Modified: ").append(lastModified).append("\n")
 	   	   .append("Server: Apache/1.3.0 (Unix)\n")
-	   	   .append("Last-Modified: Mon, 22 Jun 1998\n")
 	   	   .append("Content-Length: " + mensagem.length() + "\n")
 	   	   .append("Content-Type: text/html;charset=utf-8\n")
 	   	   .append("\n")

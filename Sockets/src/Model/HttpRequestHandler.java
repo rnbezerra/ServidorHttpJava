@@ -36,7 +36,7 @@ public class HttpRequestHandler extends Thread{
 			
 			if(request.toUpperCase().startsWith("POST")){
 				HttpPost post = new HttpPost();
-				response = post.getResponse();
+				response = post.getResponse(request);
 			}
 			else if(request.toUpperCase().startsWith("GET")){
 				HttpGet get = new HttpGet();
