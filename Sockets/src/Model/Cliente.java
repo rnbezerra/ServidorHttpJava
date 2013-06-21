@@ -66,7 +66,7 @@ public class Cliente extends Thread
 	private void httpRequisitionSend( Socket cliente )
 	{
 		//		 *****************MENSAGEM DE REQUISIÇÃO HTTP***************************
-		int opcao = 3;
+		int opcao = 1;
 		PrintStream saida = null;
 		try
 		{
