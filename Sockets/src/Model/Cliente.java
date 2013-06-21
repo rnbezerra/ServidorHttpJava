@@ -27,7 +27,7 @@ public class Cliente extends Thread
 		{
 			System.out.println("Cliente > O cliente se conectou ao servidor com sucesso");
 			Socket conexao = new Socket( "localhost" , 80);
-			conexao.setKeepAlive(false);
+			conexao.setKeepAlive(true);
 			conexaoStatus = conexao.getKeepAlive();
 			Thread c = new Cliente(conexao);
 		
@@ -66,7 +66,7 @@ public class Cliente extends Thread
 	private void httpRequisitionSend( Socket cliente )
 	{
 		//		 *****************MENSAGEM DE REQUISIÇÃO HTTP***************************
-		
+		int opcao = 3;
 		PrintStream saida = null;
 		try
 		{
@@ -76,13 +76,28 @@ public class Cliente extends Thread
 			e.printStackTrace();
 		}
 		
-		saida.println	("GET /teste HTTP/1.1");
+		switch(opcao){
+		
+		case 1:
+			saida.println	("POST /teste HTTP/1.1");
+			break;
+		case 2:
+			saida.println	("GET /teste HTTP/1.1");
+			break;
+		case 3:
+			saida.println	("HEAD /teste HTTP/1.1");
+			break;
+		default:
+			saida.println	("Opcao inexistente");
+			return;
+		}
 		saida.println	("Host: "+ cliente.getLocalAddress() );
+		saida.println 	("User-agent: Mozilla");
 		if(conexaoStatus == true)
 			saida.println	("Connection: Keep-Alive");
 		else 
 			saida.println ("Connection: close");
-		
+		saida.println 	("Accept-language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4");
 		saida.println		("\n\n");
 		saida.flush();
 		
