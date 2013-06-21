@@ -14,22 +14,25 @@ public class Cliente extends Thread
 	 */
 	
 	private Socket conexao;
-
-	
+	private static boolean conexaoStatus;
 	public Cliente(Socket conexao)
-	{
+	{	
 		this.conexao = conexao;
 	}
 	
 	public static void main(String[] args)
 	{
+		
 		try
 		{
 			System.out.println("Cliente > O cliente se conectou ao servidor com sucesso");
 			Socket conexao = new Socket( "localhost" , 80);
-			
+			conexao.setKeepAlive(false);
+			conexaoStatus = conexao.getKeepAlive();
 			Thread c = new Cliente(conexao);
+		
 			c.start();
+			
 			
 			
 		} catch (UnknownHostException e)
@@ -75,7 +78,10 @@ public class Cliente extends Thread
 		
 		saida.println	("POST /teste HTTP/1.1");
 		saida.println	("Host: "+ cliente.getLocalAddress() );
-		saida.println	("Connection: close");
+		if(conexaoStatus == true)
+			saida.println	("Connection: Keep-Alive");
+		else 
+			saida.println ("Connection: close");
 		
 		saida.println		("\n\n");
 		saida.flush();
