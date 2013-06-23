@@ -58,8 +58,8 @@ public class HttpRequestHandler extends Thread{
 					fileInputStream.close();
 					
 
-					PrintWriter printWriter = new PrintWriter(clientSocket.getOutputStream());
-					printWriter.println();					
+//					PrintWriter printWriter = new PrintWriter(clientSocket.getOutputStream());
+//					printWriter.println();
 					output.write(b);
 				}
 				
