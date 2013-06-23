@@ -15,7 +15,7 @@ public class HttpPost{
         calendar.add(calendar.MONTH, -3);
         String lastModified = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z").format(calendar.getTime());
 
-        String connection = (request.contains("Connection: Keep-Alive") ? "Keep-Alive" : "Close");
+        String connection = (request.toLowerCase().contains("connection: keep-alive") ? "Keep-Alive" : "Close");
         
 		StringBuilder builder = new StringBuilder();
 		

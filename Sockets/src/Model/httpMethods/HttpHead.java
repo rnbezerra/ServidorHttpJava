@@ -14,9 +14,9 @@ public class HttpHead {
 		DateFormat dataFormato = DateFormat.getDateInstance(DateFormat.FULL);//new SimpleDateFormat("E, dd MMM yyyy hh:mm:ss");
 		Calendar data = Calendar.getInstance();
 
-		builder.append("HTTP/1.1 200\n");
+		builder.append("HTTP/1.1 200 OK\n");
 		
-		if(request.contains("Keep-Alive"))
+		if(request.toLowerCase().contains("keep-alive"))
 			builder.append("Connection: Keep-Alive\n");
 		else
 			builder.append("Connection: Close\n");
